@@ -1,0 +1,64 @@
+{
+	// Place your snippets for dart here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"BDD App":{
+		"prefix": "bdd_app",
+		"description": "Create Driver app",
+		"body": [
+			"import 'package:flutter_driver/driver_extension.dart';",
+			"import '../lib/main.dart' as app;\n",
+			"void main() {",
+		  	"\t// This line enables the extension.",
+		  	"\tenableFlutterDriverExtension();\n",
+		  	"\t// Call the `main()` function of the app, or call `runApp` with",
+		  	"\t// any widget you are interested in testing.",
+		  	"\tapp.main();",
+			"}"
+		],
+	},
+	"BDD Config": {
+		"prefix": "bdd_config",
+		"description": "Create Flutter Gherkin Config",
+		"body": [
+			"import 'dart:async';",
+			"import 'package:flutter_gherkin/flutter_gherkin.dart';",
+			"import 'package:gherkin/gherkin.dart';",
+			"import 'package:glob/glob.dart';\n",
+			"Future<void> main() {",
+			"\tfinal config = FlutterTestConfiguration()",
+			"\t\t..features = [Glob(r\"bdd/features/**.feature\")]",
+			"\t\t..reporters = [",
+			"\t\t\tStdoutReporter(),",
+			"\t\t\tProgressReporter(),",
+			"\t\t\tTestRunSummaryReporter(),",
+			"\t\t\tJsonReporter(path: './report.json'),",
+			"\t\t]",
+			"\t\t//..hooks = []",
+			"\t\t..stepDefinitions = [$1]",
+			"\t\t//..customStepParameterDefinitions = []",
+			"\t\t..restartAppBetweenScenarios = true",
+			"\t\t..targetAppPath = \"bdd/app.dart\"",
+			"\t\t..exitAfterTestRun = true; // set to false if debugging to exit cleanly",
+			"\treturn GherkinRunner().execute(config);",
+			"}"
+		]
+	},
+	"BDD Given Step":{
+		"prefix": "bdd_given",
+		"description": "Create BDD Given Step Definition",
+		"body": [
+			""
+		]
+	}
+}
